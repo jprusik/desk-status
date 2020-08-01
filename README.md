@@ -43,26 +43,30 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
   dtparam=spi=on
   ```
 
-Edit or create `.env` in the same directory as `seat_status.py` with the following contents:
+Edit or create `.env` in the same directory as `status_display.py` with the following contents:
 
 ```shell
 API_ACCESS_TOKEN="AABBCCDDEEFFGG" # Your Robin API access token
 API_DOMAIN_URL="api.robinpowered.com" # The domain for Robin API calls
-SEAT_ID="0" # The id of the Robin desk this display is running for
+SEAT_ID=0 # The id of the Robin desk this display is running for
 ORG_ID=0 # The id of your Robin organization
 TIMEZONE_STRING="America/New_York" # The desk's tz database time zone name ('e.g. America/New_York')
+API_POLL_INTERVAL=60 # How many seconds to wait before updating the desk status
+RED_GPIO=14 # GPIO pin the red led is attached to
+GREEN_GPIO=18 # GPIO pin the green led is attached to
+BLUE_GPIO=15 # GPIO pin the blue led is attached to
 ```
 
 ## Running the code
 
-Once the `seat_status.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file:
+Once the `status_display.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file:
 
 ```shell
-sudo python3 /home/pi/seat_status.py
+sudo python3 /home/pi/desk-status/status_display.py
 ```
 
 ## Notes
 
 - This build assumes Raspberry Pi Zero hardware - no other Raspberry Pi hardware has been tested with this code.
-- [Ubuntu Font Family](https://design.ubuntu.com/font/) is included in `/fonts` by default. If you wish to use a different font, add them to the `/fonts` directory and update the import references in `seat_status.py` (note, line spacing currently presumes Ubuntu fonts and may require adjustments when using other fonts).
+- [Ubuntu Font Family](https://design.ubuntu.com/font/) is included in `/fonts` by default. If you wish to use a different font, add them to the `/fonts` directory and update the import references in `status_display.py` (note, line spacing currently presumes Ubuntu fonts and may require adjustments when using other fonts).
 - Tip: You can access the the target pi on your network using the pi's network DNS reference (`raspberrypi` by default). This is particularly useful if your network has dynamic IP address assignment; you can simply `ssh pi@raspberrypi.local`)

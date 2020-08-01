@@ -17,6 +17,7 @@ API_DOMAIN_URL = os.getenv('API_DOMAIN_URL')
 SEAT_ID = os.getenv('SEAT_ID')
 ORG_ID = os.getenv('ORG_ID')
 TIMEZONE_STRING = os.getenv('TIMEZONE_STRING')
+API_POLL_INTERVAL = os.getenv('API_POLL_INTERVAL')
 
 headers = {
     'Content-Type': 'application/json;charset=utf-8',
@@ -59,7 +60,7 @@ def reserve_seat(user_id):
         print('request errored')
         return json.loads('{"data":[]}')
 
-def get_reservees_by_seat():
+def get_reservations_by_seat():
     url = 'https://'+API_DOMAIN_URL+'/v1.0/seats/'+SEAT_ID+'/reservations'
 
     try:
