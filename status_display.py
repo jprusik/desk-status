@@ -62,6 +62,7 @@ def update_seat():
     seat_type = ''
     seat_disabled = False
     seat_reservable = True
+    now = datetime.now().astimezone().replace(microsecond=0)
 
     line_one = ''
     line_two = ''
@@ -96,7 +97,6 @@ def update_seat():
 
         line_one = ', '.join((seat_name, seat_zone))
         start = parser.isoparse(reservations[0]['start']['date_time'])
-        now = datetime.now().astimezone().replace(microsecond=0)
         active_reservation = now > start
 
         # If the seat is not assigned, make sure the end of the reservation
