@@ -15,6 +15,21 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
 
 - [Install Raspbian (Lite)](https://www.raspberrypi.org/downloads/raspbian/) on a microSD/SD card
 - Set up the Raspberry Pi to run headless and connect it to your network ([guide](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md))
+  - Add a file named `ssh` to the root of the SD card.
+  - (Optional) set up your network's wifi configuration by adding a file named `wpa_supplicant.conf` to the root of the SD card. The contents should look like:
+
+    ```config
+    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
+    country=<Insert 2 letter ISO 3166-1 country code here>
+
+    network={
+     ssid="<Name of your wireless LAN>"
+     psk="<Password for your wireless LAN>"
+    }
+    ```
+
+  - (Optional) Update your device hostname by editing `sudo nano /etc/hostname` and `/etc/hosts` (from "localhost") to your desired name.
 - [ssh into the Raspberry Pi](https://www.raspberrypi.org/documentation/remote-access/ssh/):
 - Do `sudo raspi-config` and set up:
   - "Interfacing Options" > "Interfacing Options" > "I2C" > select "Yes"
@@ -64,6 +79,28 @@ Once the `status_display.py` script is executed, it will continue to run until t
 ```shell
 sudo python3 /home/pi/desk-status/status_display.py
 ```
+
+Alternatively, run the script as a service:
+
+- Run `sudo systemctl --force --full edit deskstatus.service` and enter the config:
+
+  ```config
+  [Unit]
+  Description=Robin Desk status display
+  Requires=network.target
+  After=multi-user.target
+
+  [Service]
+  WorkingDirectory=/home/pi/desk-status
+  User=pi
+  ExecStart=python3 .
+  ExecStopPost=python3 -c 'import status_display; status_display.shutdown()'
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+- Enable the service with `sudo systemctl enable --now deskstatus.service`, and start it with `sudo systemctl start deskstatus.service`
 
 ## Notes
 

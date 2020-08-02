@@ -2,6 +2,7 @@ import adafruit_ssd1306
 import busio
 import json
 import os
+from os.path import join, dirname
 import requests
 import subprocess
 import time
@@ -40,9 +41,9 @@ draw = ImageDraw.Draw(image)
 # font = ImageFont.load_default()
 
 # Load TTF fonts
-font = ImageFont.truetype('./fonts/UbuntuMono-B.ttf', 16)
-alt_font = ImageFont.truetype('./fonts/UbuntuMono-R.ttf', 16)
-small_font = ImageFont.truetype('./fonts/Ubuntu-C.ttf', 13)
+font = ImageFont.truetype(join(dirname(__file__), 'fonts/UbuntuMono-B.ttf'), 16)
+alt_font = ImageFont.truetype(join(dirname(__file__), 'fonts/UbuntuMono-R.ttf'), 16)
+small_font = ImageFont.truetype(join(dirname(__file__), 'fonts/Ubuntu-C.ttf'), 13)
 
 def draw_reset():
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
@@ -163,12 +164,7 @@ def update_seat():
     display.image(image)
     display.show()
 
-try:
-    while True:
-        update_seat()
-        time.sleep(int(robin_api.API_POLL_INTERVAL))
-
-except:
+def shutdown():
     draw_reset()
     draw.text((x, top+16), 'Shutting Down...',  font=font, fill=255)
     display.image(image)
