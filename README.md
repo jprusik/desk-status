@@ -34,6 +34,7 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
 - Do `sudo raspi-config` and set up:
   - "Interfacing Options" > "Interfacing Options" > "I2C" > select "Yes"
   - (Optional) "Localisation Options"
+  - set your device's timezone (if not set previously) with `timedatectl` (e.g. `sudo timedatectl set-timezone America/New_York`)
   - (Optional) "Change User Password"
     **Important!** Because we're using a Raspberry Pi, the default user is `pi` with a password of `raspberry` - it is strongly advised to change the password, at minimum.
 - Install dependencies:

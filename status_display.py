@@ -160,6 +160,9 @@ def update_seat():
     if len(line_three):
         draw.text((x, top+16+13+2), line_three, font=font, fill=255)
 
+    timestamp_size = 12
+    draw.text((x, height-timestamp_size-2), now.strftime('as of  %I:%M%P  %d/%m/%y'), font=ImageFont.truetype('./fonts/Ubuntu-C.ttf', timestamp_size), fill=255)
+
     # Display image.
     display.image(image)
     display.show()
