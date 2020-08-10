@@ -118,6 +118,15 @@ def update_seat():
                 line_two = 'This seat is:'
                 line_three = 'UNAVAILABLE'
                 status_light.set_status('AVAILABLE')
+        else:
+            line_two = 'This seat is:'
+
+            if seat_disabled is not True and seat_reservable is True:
+                line_three = 'AVAILABLE'
+                status_light.set_status('AVAILABLE')
+            else:
+                line_three = 'UNAVAILABLE'
+                status_light.set_status('UNAVAILABLE')
 
     else:
         seat_request = robin_api.get_seat()
