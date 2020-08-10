@@ -13,7 +13,7 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
 
 ## Setup
 
-- [Install Raspbian (Lite)](https://www.raspberrypi.org/downloads/raspbian/) on a microSD/SD card
+- [Install Raspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/) (formerly, "Raspbian") on a microSD/SD card
 - Set up the Raspberry Pi to run headless and connect it to your network ([guide](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md))
   - Add a file named `ssh` to the root of the SD card.
   - (Optional) set up your network's wifi configuration by adding a file named `wpa_supplicant.conf` to the root of the SD card. The contents should look like:
@@ -36,7 +36,7 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
   - (Optional) "Localisation Options"
   - set your device's timezone (if not set previously) with `timedatectl` (e.g. `sudo timedatectl set-timezone America/New_York`)
   - (Optional) "Change User Password"
-    **Important!** Because we're using a Raspberry Pi, the default user is `pi` with a password of `raspberry` - it is strongly advised to change the password, at minimum.
+    **Important!** Because we're using Raspberry Pi OS, the default user is `pi` with a password of `raspberry` - it is strongly advised to change the password, at minimum.
 - Install dependencies:
 
   ```shell
@@ -78,7 +78,7 @@ BLUE_GPIO=15 # GPIO pin the blue led is attached to
 Once the `status_display.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file:
 
 ```shell
-sudo python3 /home/pi/desk-status/status_display.py
+python3 /home/pi/desk-status
 ```
 
 Alternatively, run the script as a service:
