@@ -13,6 +13,8 @@ The code provided here is based on [mini-ticker](https://github.com/jprusik/mini
 
 ## Setup
 
+**Note:** This project covers the software setup of your desk status device. For hardware models and assembly, see the [desk-status-model](https://github.com/jprusik/desk-status-model) project.
+
 - [Install Raspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/) (formerly, "Raspbian") on a microSD/SD card
 - Set up the Raspberry Pi to run headless and connect it to your network ([guide](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md))
   - Add a file named `ssh` to the root of the SD card.
@@ -107,4 +109,4 @@ Alternatively, run the script as a service:
 
 - This build assumes Raspberry Pi Zero hardware - no other Raspberry Pi hardware has been tested with this code.
 - [Ubuntu Font Family](https://design.ubuntu.com/font/) is included in `/fonts` by default. If you wish to use a different font, add them to the `/fonts` directory and update the import references in `status_display.py` (note, line spacing currently presumes Ubuntu fonts and may require adjustments when using other fonts).
-- Tip: You can access the the target pi on your network using the pi's network DNS reference (`raspberrypi` by default). This is particularly useful if your network has dynamic IP address assignment; you can simply `ssh pi@raspberrypi.local`)
+- ProTip: You can access the the target pi on your network using the pi's network DNS reference (`raspberrypi` by default). This is particularly useful if your network has dynamic IP address assignment; you can simply `ssh pi@raspberrypi.local`)
