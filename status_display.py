@@ -135,6 +135,7 @@ def update_seat():
             draw.text((x, top+16), 'ERROR',  font=font, fill=255)
             line_three = 'DESK NOT FOUND'
             status_light.set_status('NONE')
+            status_light.signal_service_needed()
         else:
             try:
                 seat_name = seat_request['data']['name']

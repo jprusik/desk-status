@@ -24,6 +24,14 @@ def signal_location():
     led.pulse(pulse_fade_duration, pulse_fade_duration, pulse_color, (0,0,0), pulse_count, False)
     led.color = original_color
 
+def signal_service_needed():
+    original_color = led.color
+    pulse_count = 5
+    pulse_color = Color('red')
+    pulse_fade_duration = 0.1
+    led.pulse(pulse_fade_duration, pulse_fade_duration, pulse_color, (0,0,0), pulse_count, False)
+    led.color = original_color
+
 def set_status(status):
     if status == 'AVAILABLE':
         led.color = Color('green')
